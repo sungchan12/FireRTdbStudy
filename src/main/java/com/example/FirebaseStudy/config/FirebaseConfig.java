@@ -20,7 +20,7 @@ public class FirebaseConfig {
         // Firebase 옵션 설정
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream()))
-                .setDatabaseUrl("https://~")
+                .setDatabaseUrl("")
                 .build();
         FirebaseApp.initializeApp(options);
         return FirebaseDatabase.getInstance();

@@ -18,7 +18,7 @@ public class FirebaseService {
 
     public FirebaseService(FirebaseDatabase firebaseDatabase) {
         this.firebaseDatabase = firebaseDatabase;
-        this.usersRef = firebaseDatabase.getReference("users");
+        this.usersRef = firebaseDatabase.getReference("names");
     }
 
     // CREATE: 사용자 추가
@@ -62,7 +62,6 @@ public class FirebaseService {
                         // Long을 Integer로 변환 (Firebase는 숫자를 Long으로 저장)
                         if (userData.get("age") != null) {
                             Long ageLong = (Long) userData.get("age");
-                            user.setAge(ageLong.intValue());
                         }
 
                         users.add(user);
@@ -101,7 +100,6 @@ public class FirebaseService {
 
                     if (userData.get("age") != null) {
                         Long ageLong = (Long) userData.get("age");
-                        user.setAge(ageLong.intValue());
                     }
 
                     future.complete(user);
@@ -132,7 +130,6 @@ public class FirebaseService {
         Map<String, Object> updates = new HashMap<>();
         if (user.getName() != null) updates.put("name", user.getName());
         if (user.getEmail() != null) updates.put("email", user.getEmail());
-        if (user.getAge() > 0) updates.put("age", user.getAge());
 
         usersRef.child(user.getId()).updateChildren(updates, (error, ref) -> {
             if (error != null) {

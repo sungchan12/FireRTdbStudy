@@ -12,14 +12,12 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-
     private final FirebaseService firebaseService;
 
     public UserController(FirebaseService firebaseService) {
         this.firebaseService = firebaseService;
     }
-
-    // 사용자 생성
+    
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody User user) {
         try {
